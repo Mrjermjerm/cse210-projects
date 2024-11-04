@@ -4,29 +4,29 @@ using System.Xml.XPath;
 class Program
 {
     static void DisplayWelcome()
-        {
-            Console.WriteLine($"Welcome to the program!");
-        }
+    {
+        Console.WriteLine($"Welcome to the program!");
+    }
 
-        static string PromptUserName()
-        {
-            Console.Write($"Please enter your name: ");
-            string name = Console.ReadLine();
-            return name;
-        }
+    static string PromptUserName()
+    {
+        Console.Write($"Please enter your name: ");
+        string name = Console.ReadLine();
+        return name;
+    }
 
-        static int PromptUserNumber()
-        {
-            Console.Write($"Please enter your favorite number: ");
-            int number = int.Parse(Console.ReadLine());
-            return number;
-        }
+    static int PromptUserNumber()
+    {
+        Console.Write($"Please enter your favorite number: ");
+        int number = int.Parse(Console.ReadLine());
+        return number;
+    }
 
-        static int SquareResult(int number)
-        {
-            int square = number * number;
-            return square;
-        }
+    static int SquareResult(int number)
+    {
+        int square = number * number;
+        return square;
+    }
 
     static void Main(string[] args)
     {
