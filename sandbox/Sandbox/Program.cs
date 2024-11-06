@@ -4,25 +4,91 @@ using System.Security.Cryptography;
 
 class Program
 {
-    static int AddNUmbers(int n1, int n2)
+    // static int AddNUmbers(int n1, int n2)
+    // {
+    //     int total = n1 + n2;
+    //     return total;
+    // }
+
+    class Circle
     {
-        int total = n1 + n2;
-        return total;
+        private double radius;
+
+        public Circle(double radius)
+        {
+            this.radius = radius;
+        }
+
+        public double GetArea()
+        {
+            return Math.PI * radius * radius;
+        }
+
+        public double GetDiameter()
+        {
+            return 2 * radius;
+        }
+
+        public double GetCircumference()
+        {
+            return Math.PI * 2 * radius;
+        }
+
+        public double GetRadius()
+        {
+            return radius;
+        }
+
+        public void SetRadius(double radius)
+        {
+            this.radius = radius;
+        }
+
+        public void Display()
+        {
+            Console.WriteLine($"Area is: {GetArea()}");
+            Console.WriteLine($"Circumference is: {GetCircumference()}");
+        }
     }
 
 
     static void Main(string[] args)
     {
 
+        int x = 10;
+        
+        Circle myCircle = new Circle(x);
+        Circle myCircle2 = new Circle(x + 10);
+
+        myCircle.Display();
+        myCircle.SetRadius(x + 10);
+        myCircle.Display();
+               
+        // Console.WriteLine(myCircle.GetArea());
+        // Console.WriteLine(myCircle2.GetArea());
+
+        // Console.WriteLine(myCircle.GetArea());
+        // Console.WriteLine(myCircle.GetCircumference());
+        // Console.WriteLine(myCircle.GetDiameter());
+        // Console.WriteLine(myCircle.GetRadius());
+
+
+
+
+
+
+
+        
+
         // int total = AddNUmbers(20,30);
         // Console.WriteLine(total);
 
-        int x = 10;
-        int y = x++;
-        Console.WriteLine($"{y}, {x}");
+        // int x = 10;
+        // int y = x++;
+        // Console.WriteLine($"{y}, {x}");
 
-        int z = ++y;
-        Console.WriteLine($"{z}, {y}");
+        // int z = ++y;
+        // Console.WriteLine($"{z}, {y}");
 
 
         // Console.WriteLine("Hello Sandbox World!");
@@ -55,12 +121,12 @@ class Program
 
 
 
-        Console.WriteLine("Hey BOb");
+        // Console.WriteLine("Hey BOb");
 
-        for(int i = 0; i < 11; i++) // To increment by another number is += # 
-        {
-            Console.WriteLine(i);
-        }
+        // for(int i = 0; i < 11; i++) // To increment by another number is += # 
+        // {
+        //     Console.WriteLine(i);
+        // }
 
         // int age = -1;
 
@@ -71,27 +137,27 @@ class Program
         //     Console.WriteLine($"Your age is: {age}");
         // }
 
-        int age;
+        // int age;
 
-        do 
-        {          
-            Console.Write("Please enter your age: ");
-            age = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Your age is: {age}");
-        }while(age < 0 || age > 120);
-
-
-        List <string> myColors = new List<string>();
-
-        myColors.Add("Red");
-        myColors.Add("Green");
-        myColors.Add("Blue");
+        // do 
+        // {          
+        //     Console.Write("Please enter your age: ");
+        //     age = int.Parse(Console.ReadLine());
+        //     Console.WriteLine($"Your age is: {age}");
+        // }while(age < 0 || age > 120);
 
 
-        foreach(string color in myColors)
-        {
-            Console.WriteLine(color);
-        }
+        // List <string> myColors = new List<string>();
+
+        // myColors.Add("Red");
+        // myColors.Add("Green");
+        // myColors.Add("Blue");
+
+
+        // foreach(string color in myColors)
+        // {
+        //     Console.WriteLine(color);
+        // }
 
         
     }
