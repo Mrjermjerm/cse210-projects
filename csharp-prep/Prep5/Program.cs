@@ -22,9 +22,9 @@ class Program
         return number;
     }
 
-    static int SquareResult(int number)
+    static int SquareResult(int favoriteNumber)
     {
-        int square = number * number;
+        int square = favoriteNumber * favoriteNumber;
         return square;
     }
 
