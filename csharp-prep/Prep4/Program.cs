@@ -47,7 +47,7 @@ class Program
                 }
             }
 
-            if(number !> 0)
+            if(number > 0)
             {
                 if(number < lowestPositiveNumber)
                 {
