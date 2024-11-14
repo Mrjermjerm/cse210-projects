@@ -8,8 +8,6 @@ class Menu
 
     private string _entry;
 
-    private int _choice;
-
     private List<string> _newEntry = new List<string>();
 
     private string _journal = "myJournalEntrys.txt";
@@ -28,6 +26,7 @@ class Menu
             Console.WriteLine($"3. Load");
             Console.WriteLine($"4. Save");
             Console.WriteLine($"5. Quit");
+            Console.Write($"What would you like to do? ");
             
             choice = Console.ReadLine();
 
@@ -41,7 +40,7 @@ class Menu
 
             else if (choice == "2")
             {   
-                Console.WriteLine($"\nList of entries: ");
+                Console.WriteLine($"\n\tList of new entries: ");
 
                 foreach (string entry in _newEntry)
                 Console.WriteLine(entry);
@@ -50,7 +49,7 @@ class Menu
             else if (choice == "3")
             {
                 string[] loadEntries = File.ReadAllLines("myJournalEntrys.txt");
-                Console.WriteLine("\nJournal Entries\n");
+                Console.WriteLine("\n\tJournal Entries\n");
                 foreach (string entry in loadEntries)
                 {
                     Console.WriteLine(entry);
@@ -60,17 +59,17 @@ class Menu
             else if (choice == "4")
             {
                 File.WriteAllLines(_journal, _newEntry);
-                Console.WriteLine($"\nJournel entries saved");
+                Console.WriteLine($"\n\tJournel entries saved");
             }
 
             else if (choice == "5")
             {
-                Console.WriteLine("\nGood bye");
+                Console.WriteLine("\n\tGood bye");
             }
 
             else
             {
-                Console.WriteLine($"\nSorry, please select one of the five choices\n");
+                Console.WriteLine($"\n\tSorry, please select one of the five choices");
             }
         }  
     }
