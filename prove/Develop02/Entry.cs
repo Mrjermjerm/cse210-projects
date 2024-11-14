@@ -22,6 +22,8 @@ class Entry
 
         // Entry entry = new Entry(_dateTime, _entry);
         // Console.WriteLine($"{entry}");
+// Console.WriteLine($"Date: {_dateTime} - Prompt: {prompt}");
+
 
         Prompt prompt = new Prompt(); 
         prompt.DisplayPrompt();
@@ -29,6 +31,5 @@ class Entry
         Console.Write($"> ");
         _entry = Console.ReadLine();
         
-        // Console.WriteLine($"Date: {_dateTime} - Prompt: {prompt}");
     }
 }
