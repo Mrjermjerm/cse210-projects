@@ -2,11 +2,13 @@
 
 class NewEntry
 {
-    public void DisplayNewEntry()
+    public string DisplayNewEntry()
     {
-        Prompt prompt = new Prompt(); 
-        prompt.DisplayPrompt();
-
+        Prompt prompt = new Prompt();
+        return prompt.RandomPrompt();
+    }
+    public void DisplayCarrot()
+    {
         Console.Write($"> ");
     }
 }

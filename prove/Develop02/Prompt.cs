@@ -1,6 +1,8 @@
 
 
+using System.Net.NetworkInformation;
 using System.Reflection.Metadata;
+using System.Threading.Channels;
 
 class Prompt
 {
@@ -16,9 +18,14 @@ class Prompt
         _prompt.Add("If I had one thing I could do over today, what would it be?");
     }
     
+    public string RandomPrompt()
+    {
+        return _prompt[random.Next(_prompt.Count)];
+    } 
+
     public void DisplayPrompt()
     {
-        string randomPrompt = _prompt[random.Next(_prompt.Count)];
-        Console.WriteLine(randomPrompt);
+        Prompt prompt = new Prompt();
+        Console.WriteLine(prompt.RandomPrompt());
     }
 }
