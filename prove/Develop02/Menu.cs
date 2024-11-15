@@ -8,12 +8,15 @@ class Menu
 
     private string _entry;
 
+    DateTime timeOfEntry = DateTime.Now;
+
     private List<string> _newEntry = new List<string>();
 
     private string _journal = "myJournalEntrys.txt";
 
     public void DisplayMenu()
     {
+        string date = timeOfEntry.ToShortDateString();
 
         string choice = "";
         
@@ -34,8 +37,8 @@ class Menu
             {
                 NewEntry journal = new  NewEntry();
                 journal.DisplayNewEntry();
-
-                _newEntry.Add(_entry = Console.ReadLine());
+                _entry = Console.ReadLine();
+                _newEntry.Add(_entry);
             }
 
             else if (choice == "2")
@@ -43,7 +46,7 @@ class Menu
                 Console.WriteLine($"\n\tList of new entries: ");
 
                 foreach (string entry in _newEntry)
-                Console.WriteLine(entry);
+                Console.WriteLine($"Date: {date} -\n{entry}");
             }
 
             else if (choice == "3")
