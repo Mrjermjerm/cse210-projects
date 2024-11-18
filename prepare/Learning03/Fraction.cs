@@ -16,6 +16,7 @@ public class Fraction
     public Fraction(int wholeNumber)
     {
         _top = wholeNumber;
+        _bottom = 1;
     }
 
     public Fraction(int top, int bottom)
@@ -24,13 +25,14 @@ public class Fraction
         _bottom = bottom;
     }    
 
-    public int GetTop()
+    public string GetFractionString()
     {
-        return _top;
+        string text = $"{_top}/{_bottom}";
+        return text;
     }
 
-    public int GetBottom()
+    public double GetDecimalValue()
     {
-        return _bottom;
+        return (double)_top / (double)_bottom;
     }
 }
