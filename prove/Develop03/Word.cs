@@ -1,58 +1,75 @@
 
-
-using System.ComponentModel.DataAnnotations;
-using System.Security.Cryptography.X509Certificates;
-
 class Word
 {
-    private Random _randomWord = new Random();
-    private List<int> _hiddenWords = new List<int>();
-    private List<string> _verses;
-
+    private List<string> _verses;          
+    private List<List<bool>> _wordsHidden; 
+    private Random _random;             
 
     public Word(List<string> verses)
     {
         _verses = verses;
-    }
-    
-    private string ReplaceWords()
-    {
-        string verse = _verses[0];
-        string[] words = verse.Split(' ');
+        _wordsHidden = new List<List<bool>>();
+        _random = new Random(); 
 
-        int randomWordsIndex = -1;
-        while (randomWordsIndex == -1 && _hiddenWords.Count < words.Length)
+        foreach (var verse in _verses)
         {
-            randomWordsIndex = _randomWord.Next(words.Length);
-            
-            if (_hiddenWords.Contains(randomWordsIndex))
+            var wordHidden = new List<bool>();
+            var words = verse.Split(' '); 
+            foreach (var word in words)
             {
-                randomWordsIndex = -1;
+                wordHidden.Add(false); 
             }
+            _wordsHidden.Add(wordHidden);
         }
-
-        if (_hiddenWords.Count >= words.Length)
-        {
-            return string.Join(" ", words);
-        }
-
-        if (randomWordsIndex != -1)
-        {
-            words[randomWordsIndex] = new string('_', words[randomWordsIndex].Length);
-            _hiddenWords.Add(randomWordsIndex);
-        }
-        _verses[0] = string.Join(" ", words);
-        return string.Join(" ", words);
     }
 
     public void GetReplaceWords()
     {
-        string hiddenWords = ReplaceWords();
-        Console.WriteLine(hiddenWords);
+        for (int verseIndex = 0; verseIndex < _verses.Count; verseIndex++)
+        {
+            var words = _verses[verseIndex].Split(' ');
+
+            List<int> availableWords = new List<int>(); 
+            for (int wordIndex = 0; wordIndex < words.Length; wordIndex++)
+            {
+                if (!_wordsHidden[verseIndex][wordIndex]) 
+                {
+                    availableWords.Add(wordIndex);
+                }
+            }
+
+            if (availableWords.Count > 0)
+            {
+                int randomIndex = availableWords[_random.Next(availableWords.Count)];
+                _wordsHidden[verseIndex][randomIndex] = true; 
+            }
+        }
+
+        for (int verseIndex = 0; verseIndex < _verses.Count; verseIndex++)
+        {
+            var words = _verses[verseIndex].Split(' ');
+            for (int wordIndex = 0; wordIndex < words.Length; wordIndex++)
+            {
+                if (_wordsHidden[verseIndex][wordIndex])
+                {
+                    string word = words[wordIndex];
+                    string hiddenWord = new string('_', word.Length); 
+                    words[wordIndex] = hiddenWord; 
+                }
+            }
+            Console.WriteLine(string.Join(" ", words)); 
+        }
     }
 
     public bool AllWordsHidden()
     {
-        return _hiddenWords.Count == _verses[0].Split(' ').Length;
+        foreach (var wordHiddenList in _wordsHidden)
+        {
+            if (wordHiddenList.Contains(false)) 
+            {
+                return false;
+            }
+        }
+        return true; 
     }
 }

@@ -3,7 +3,6 @@
 
 using System.Dynamic;
 using System.Xml.Serialization;
-
 class Menu
 {
     private Scripture _scripture;
@@ -12,36 +11,72 @@ class Menu
     public Menu()
     {
         _scripture = new Scripture();
-        _word = new Word(_scripture.GetVerse());
     }
 
     public void GetMenu()
-    {        
+    {
         string choice = "";
-        
-        while(choice != "quit")
+
+        while (choice != "quit")
         {
-            Reference reference = new Reference("John", 3, 16);
             Console.Clear();
-            Console.Write(reference.GetScripture());
-
-            Console.WriteLine(string.Join(" ",_scripture.GetVerse()));
+            Console.WriteLine("Multi or single verse scripture?");
+            Console.WriteLine("Please enter 1 for multi or 2 for single");
             choice = Console.ReadLine();
-            
-            if(choice == "")
-            {
-                Console.Clear();
-                Console.Write(reference.GetScripture());
-                _word.GetReplaceWords();
 
-                if (_word.AllWordsHidden())
-                {
-                    break;
-                }
+            if (choice == "1")
+            {
+                ChooseScripture chooseScripture = new ChooseScripture();
+                chooseScripture.Choice("multi");
+                _scripture = chooseScripture.GetScripture(); 
+                _word = new Word(_scripture.GetVerse()); 
+                DisplayAndHideWords(chooseScripture);
+            }
+            else if (choice == "2")
+            {
+                ChooseScripture chooseScripture = new ChooseScripture();
+                chooseScripture.Choice("single");
+                _scripture = chooseScripture.GetScripture();
+                _word = new Word(_scripture.GetVerse());
+                DisplayAndHideWords(chooseScripture);
             }
             else
             {
-                Console.WriteLine("Invalid option");
+                Console.WriteLine("Good bye");
+            }
+        }
+    }
+
+    private void DisplayAndHideWords(ChooseScripture chooseScripture)
+    {
+        string reference = chooseScripture.GetReference();
+        Console.Clear();
+        Console.WriteLine(reference);
+        Console.WriteLine(string.Join(" ", _scripture.GetVerse()));
+
+        while (true)
+        {
+            string userAction = Console.ReadLine(); 
+            if (userAction == "")
+            {
+                Console.Clear();
+                Console.WriteLine(reference);
+                _word.GetReplaceWords(); 
+
+                if (_word.AllWordsHidden())
+                {
+                    Console.WriteLine("All words hidden! Press enter to continue.");
+                    Console.ReadLine(); 
+                    break;
+                }
+            }
+            else if (userAction == "quit")
+            {
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid option. Press enter to continue hiding words.");
             }
         }
     }

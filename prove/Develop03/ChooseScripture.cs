@@ -2,27 +2,39 @@
 
 class ChooseScripture
 {
-    public ChooseScripture()
-    {
+    private string _reference;
+    private Scripture _scripture;
 
+    public ChooseScripture() { }
+
+    public void Choice(string type)
+    {
+        if (type == "multi")
+        {
+            _scripture = new Scripture(new List<string>
+            {
+                "Trust in the Lord with all thine heart; and lean not unto thine own understanding.",
+                "In all thy ways acknowledge him, and he shall direct thy paths."
+            });
+            _reference = "Proverbs 3:5-6"; 
+        }
+        else if (type == "single")
+        {
+              _scripture = new Scripture(new List<string>
+            {
+                "For God so loved the world that he gave his only begotten Son, that whoever believes in him should not perish but have everlasting life."
+            });
+            _reference = "John 3:16";
+        }
+    }
+    
+    public string GetReference()
+    {
+        return _reference;
     }
 
-    public void Choice()
+    public Scripture GetScripture()
     {
-        string choice;
-        Console.WriteLine("Multi or single verse scripture?");
-        Console.WriteLine("Please enter 1 for multi or 2 single");
-        choice = Console.ReadLine();
-
-        if (choice == "1")
-        {
-            Reference reference = new Reference("John", 3, 16);
-            Console.Write(reference.GetScripture());
-        }
-        else if (choice == "2")
-        {
-            Reference reference = new Reference("Proverbs", 3, 5, 6);
-            Console.Write(reference.GetMultiScripture());
-        }
+        return _scripture;
     }
 }
