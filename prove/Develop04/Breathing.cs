@@ -15,12 +15,10 @@ class Breathing : Activities
 
     public override void Action()   
     {
-        Console.WriteLine("\n"); // Space
-        Console.Write("Breath in...");
+        Console.Write("\nBreath in...");
         BreathIn();
 
-        Console.WriteLine(); // Space
-        Console.Write("Now breath out...");
+        Console.Write("\nNow breath out...");
         BreathOut();
     }
 

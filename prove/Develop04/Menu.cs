@@ -4,11 +4,14 @@
 using System.Xml.Serialization;
 
 class Menu
-{
+{   
+    private int activitiesDone = 0;
 
     private string Prompt()
     {
         Console.Clear();
+        
+        Console.WriteLine($"You have done {activitiesDone} activities.");
 
         Console.WriteLine($"Menu Options:");
         Console.WriteLine($"\t1. Start breathing activity");
@@ -28,6 +31,7 @@ class Menu
                 Console.Write($"{breathing.WelcomeMessage()}\n\n{breathing.DescriptionMessage()}\n\n{activities1.PromptForTimeToWork()}");
                 
                 breathing.Time();
+                activitiesDone++;
                 break;
 
             case "2":
@@ -37,10 +41,18 @@ class Menu
                 Console.Write($"{reflection.WelcomeMessage()}\n\n{reflection.DescriptionMessage()}\n\n{activities2.PromptForTimeToWork()}");
 
                 reflection.Time();
+                activitiesDone++;
                 break;
 
             case "3":
-                Console.WriteLine("You chose 3");
+                Activities activities3 = new Activities("","","");
+                Listing listing = new Listing();
+
+                Console.Write($"{listing.WelcomeMessage()}\n\n{listing.DescriptionMessage()}\n\n{activities3.PromptForTimeToWork()}");
+
+                listing.Time();
+                activitiesDone++;
+                Thread.Sleep(1000);
                 break;
 
             case "4":
@@ -56,7 +68,10 @@ class Menu
 
     public void GetPrompt()
     {
-       Menu menu = new Menu();
-       menu.Prompt();
+       string userChoice;
+       do
+       {
+            userChoice = Prompt();
+       } while(userChoice != "4");
     }
 }

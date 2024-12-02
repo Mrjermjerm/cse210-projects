@@ -66,8 +66,6 @@ class Activities
         Console.WriteLine($"You have completed another {_duration} seconds of the {_title}");
         Animation();
 
-        Menu menu = new Menu();
-        menu.GetPrompt();
         }
         else
         {
