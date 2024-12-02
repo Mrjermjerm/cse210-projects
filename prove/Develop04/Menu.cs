@@ -22,16 +22,21 @@ class Menu
         switch (choice)
         {
             case "1":
-                Activities activities = new Activities("","");
+                Activities activities1 = new Activities("","","");
                 Breathing breathing = new Breathing();
 
-                Console.Write($"{breathing.WelcomeMessage()}\n\n{breathing.DescriptionMessage()}\n\n{activities.PromptForTimeToWork()}");
+                Console.Write($"{breathing.WelcomeMessage()}\n\n{breathing.DescriptionMessage()}\n\n{activities1.PromptForTimeToWork()}");
                 
                 breathing.Time();
                 break;
 
             case "2":
-                Console.WriteLine("You chose 2");
+                Activities activities2 = new Activities("","","");
+                Reflection reflection = new Reflection();
+
+                Console.Write($"{reflection.WelcomeMessage()}\n\n{reflection.DescriptionMessage()}\n\n{activities2.PromptForTimeToWork()}");
+
+                reflection.Time();
                 break;
 
             case "3":

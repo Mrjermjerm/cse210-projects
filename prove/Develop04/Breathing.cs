@@ -8,20 +8,20 @@ class Breathing : Activities
 {
 
 
-    public Breathing():base("Breathing Activity", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.") 
+    public Breathing():base("Breathing Activity", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.","") 
     {
         
     }
 
     public override void Action()   
     {
+        Console.WriteLine("\n"); // Space
         Console.Write("Breath in...");
         BreathIn();
-        Console.WriteLine();
+
+        Console.WriteLine(); // Space
         Console.Write("Now breath out...");
         BreathOut();
-
-        Console.WriteLine("\n"); // Space
     }
 
     public void BreathIn() 

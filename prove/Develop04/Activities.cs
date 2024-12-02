@@ -11,12 +11,14 @@ class Activities
     private string _title;
     private string _description;
     private string _timeToWork;
+    private string _duration;
 
-    public Activities(string title, string description)
+    public Activities(string title, string description, string duration)
     {
         _title = title;
         _description = description;
         _timeToWork = "How long, in seconds, would you like for your session to be? ";
+        _duration = duration;
     }
     
     public string WelcomeMessage()
@@ -37,9 +39,9 @@ class Activities
 
     public void Time() // Duration for activity
     {
-        string duration = Console.ReadLine();
+        _duration = Console.ReadLine();
         
-        if (int.TryParse(duration, out int delay))
+        if (int.TryParse(_duration, out int delay))
         {
             DateTime currentTime = DateTime.Now;            
             DateTime targetTime = currentTime.AddSeconds(delay);
@@ -50,19 +52,18 @@ class Activities
 
             Animation();
 
-            Console.WriteLine("\n"); // Space
-
             while (DateTime.Now < timeOfActivityAfterAnimation)
             {
                Action();
             }
 
+        Console.WriteLine("\n"); // Space
         Console.WriteLine($"Well done!!");
         Animation();
 
         Console.WriteLine(); // Space
 
-        Console.WriteLine($"You have completed another {duration} seconds of the {_title}");
+        Console.WriteLine($"You have completed another {_duration} seconds of the {_title}");
         Animation();
 
         Menu menu = new Menu();
@@ -96,5 +97,10 @@ class Activities
     public virtual void Action()
     {
        
+    }
+
+    public string Duration()
+    {
+        return _duration;
     }
 }
