@@ -6,15 +6,89 @@ using System.Globalization;
 
 class Breathing : Activities
 {
-    private string _titleName;
 
-    public Breathing()
+
+    public Breathing():base("Breathing Activity", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.") 
     {
-        _titleName = "Breathing Activity";
+        
     }
 
-    public string WelcomeBreathingActivity()
+    public override void Action()   
     {
-        return $"{base.WelcomeMessage()}{_titleName}";
+        Console.Write("Breath in...");
+        BreathIn();
+        Console.WriteLine();
+        Console.Write("Now breath out...");
+        BreathOut();
+
+        Console.WriteLine("\n"); // Space
+    }
+
+    public void BreathIn() 
+    {        
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(4);
+        
+        while (DateTime.Now < futureTime)
+        {
+            Console.Write("4"); 
+
+            Thread.Sleep(1000);
+
+            Console.Write("\b \b"); 
+            Console.Write("3"); 
+            
+            Thread.Sleep(1000); 
+            Console.Write("\b \b"); 
+
+            Console.Write("2"); 
+            
+            Thread.Sleep(1000); 
+            Console.Write("\b \b"); 
+
+            Console.Write("1");
+
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
+    }
+
+    public void BreathOut() 
+    {        
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(6);
+        
+        while (DateTime.Now < futureTime)
+        {
+            Console.Write("6");
+
+            Thread.Sleep(1000);
+            Console.Write("\b \b"); 
+
+            Console.Write("5");
+
+            Thread.Sleep(1000);
+            Console.Write("\b \b"); 
+            
+            Console.Write("4"); 
+
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+             
+            Console.Write("3"); 
+            
+            Thread.Sleep(1000); 
+            Console.Write("\b \b"); 
+
+            Console.Write("2"); 
+            
+            Thread.Sleep(1000); 
+            Console.Write("\b \b"); 
+
+            Console.Write("1");
+
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
     }
 }
