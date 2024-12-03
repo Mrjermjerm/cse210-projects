@@ -1,7 +1,6 @@
 
 
 
-
 class Police : Person
 {
     private string _weapons;
@@ -12,11 +11,11 @@ class Police : Person
 
     public string GetPoliceInformation()
     {
-        return $"Weapons: {_weapons}, {base.GetPersonInfo()}";
+        return $"Weapons: {_weapons}, {GetPersonInfo()}";
     }
 
     public override string GetPersonInfo()
     {
-        return $"I am a police man, my favorite weapon is {_weapons}, My info is: {base.GetPersonInfo()}";
+        return $"I am a police man, my favorite weapon is {_weapons}, My info is: {base.GetPersonStats()}";
     }
 }
