@@ -9,7 +9,6 @@ public class CreateGoals
         return _goals;
     }
 
-    // Display all goals (polymorphic behavior)
     public void ShowGoals()
     {
         if (_goals.Count == 0)
@@ -19,14 +18,15 @@ public class CreateGoals
         }
 
         Console.WriteLine("Here are your goals:\n");
-        foreach (var goal in _goals)
+        for (int i = 0; i < _goals.Count; i++)  
         {
-            goal.Display(); // Polymorphic call to the Display method of each goal type
+            Console.WriteLine($"{i + 1}. ");  
+            _goals[i].Display(); 
         }
         Console.WriteLine();
     }
 
-    // Create a new goal based on user input (polymorphism in goal creation)
+    
     public void DisplayTypeOfGoals()
     {
         Console.WriteLine("The types of Goals are:");
@@ -54,7 +54,6 @@ public class CreateGoals
                 return;
         }
 
-        // Add the created goal to the list
         _goals.Add(newGoal);
         Console.WriteLine("Goal created successfully!\n");
     }
@@ -101,6 +100,12 @@ public class CreateGoals
         Console.Write("Enter total tasks: ");
         int total = int.Parse(Console.ReadLine());
 
-        return new ChecklistGoal(name, description, points, total);  // Return a new ChecklistGoal instance
+        Console.Write("Enter points per task: ");
+        int pointsPerTask = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter bonus points for completing the goal: ");
+        int bonusPoints = int.Parse(Console.ReadLine());
+
+        return new ChecklistGoal(name, description, points, total, pointsPerTask, bonusPoints);  // Return a new ChecklistGoal instance
     }
 }

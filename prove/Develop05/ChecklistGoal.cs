@@ -1,26 +1,45 @@
 
-
 public class ChecklistGoal : Goal
 {
-    public int Completed { get; set; }
-    public int Total { get; set; }
+    public int _completed { get; set; }
+    public int _total { get; set; }
+    public int _pointsPerTask { get; set; }
+    public int _bonusPoints { get; set; }
 
-    public ChecklistGoal(string name, string description, int points, int total)
+    public ChecklistGoal(string name, string description, int points, int total, int pointsPerTask, int bonusPoints)
         : base(name, description, points)
     {
-        Total = total;
-        Completed = 0;
+        _total = total;
+        _completed = 0;
+        _pointsPerTask = pointsPerTask;
+        _bonusPoints = bonusPoints;
     }
 
-    // Implement the Display method for ChecklistGoal
+ 
     public override void Display()
     {
-        Console.WriteLine($"[ ] ~ {Name} ~ ({Description}) ~ Currently completed: {Completed}/{Total} )");
+        string completionStatus = (_completed >= _total) ? "[X]" : "[ ]";
+        Console.WriteLine($"{completionStatus} ~ {_name} ~ ({_description}) ~ {_completed}/{_total} completed");
     }
 
-    public void MarkComplete()
+   
+    public override void MarkComplete(ref double userPoints)  
     {
-        if (Completed < Total)
-            Completed++;
+        if (_completed < _total)
+        {
+            _completed++; 
+            userPoints += _pointsPerTask; 
+            Console.WriteLine($"You completed one task for '{_name}' goal! You gained {_pointsPerTask} points.");
+
+            if (_completed == _total) 
+            {
+                userPoints += _bonusPoints;  
+                Console.WriteLine($"Congratulations! You've fully completed '{_name}' goal. You earned a bonus of {_bonusPoints} points.");
+            }
+        }
+        else
+        {
+            Console.WriteLine($"Goal '{_name}' is already fully completed!");
+        }
     }
 }
