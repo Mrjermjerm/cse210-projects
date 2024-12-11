@@ -18,18 +18,20 @@ class Library
 
         do 
         {
-            Console.WriteLine("Welcome to Jeremy's Library Management. \nPlease select one of the following.");
-            Console.WriteLine("1. Manage Books");
-            Console.WriteLine();
+            Console.Clear();
+            Console.WriteLine("\nWelcome to Jeremy's Library Management. \nPlease select one of the following.");
+            Console.WriteLine("0. To Exit \n1. Manage Books");
+            Console.Write("\nUser Input: ");
 
             choice = Console.ReadLine();
             if (choice == "1")
             {
+                Console.Clear();
                 BookManagement();
             }
             else if (choice == "0")
             {
-                Console.WriteLine("Good bye");
+                Console.WriteLine("Exiting...");
                 break;
             }
             else 
@@ -42,7 +44,6 @@ class Library
     // Check Books Available
     public void BookAvailability()
     {
-        
         ReadBooksFromFile("Books.txt");
         
         foreach (var book in _books)
@@ -80,7 +81,8 @@ class Library
         do
         {
             Console.WriteLine($"\nWelcome to Book Managment");
-            Console.WriteLine($"1. Add Book\n2. Check Book Availability");
+            Console.WriteLine($"0. To Exit \n1. Add Book\n2. Check Book Availability");
+            Console.Write("\nUser input: ");
 
             Book newBook = new Book("","","", true);
             choice = Console.ReadLine();
@@ -96,7 +98,7 @@ class Library
             }
             else if (choice == "0")
             {
-                Console.WriteLine("Good bye");
+                Console.WriteLine("Exiting...");
                 break;
             }
             else 
@@ -120,7 +122,7 @@ class Library
                     writer.WriteLine($"{book.GetTitle()},{book.GetAuthor()},{book.GetISBN()}");
                 }
             }
-            Console.WriteLine("Books have been saved to the file.");
+            Console.WriteLine("Books have been added to the library.\n");
         }
         catch (Exception ex)
         {
@@ -151,7 +153,7 @@ class Library
                     }
                 }
 
-                Console.WriteLine("Books have been successfully loaded from the file.");
+                Console.WriteLine("Books by title.\n");
             }
             else
             {
