@@ -19,8 +19,8 @@ class Library
         do 
         {
             Console.Clear();
-            Console.WriteLine("\nWelcome to Jeremy's Library Management. \nPlease select one of the following.");
-            Console.WriteLine("0. To Exit \n1. Manage Books");
+            Console.WriteLine("\nWelcome to Jeremy's Library Management.\n\nPlease select one of the following:");
+            Console.WriteLine("  0. To Exit \n  1. Manage Books");
             Console.Write("\nUser Input: ");
 
             choice = Console.ReadLine();
@@ -80,8 +80,8 @@ class Library
 
         do
         {
-            Console.WriteLine($"\nWelcome to Book Managment");
-            Console.WriteLine($"0. To Exit \n1. Add Book\n2. Check Book Availability");
+            Console.WriteLine($"\nWelcome to Book Managment:");
+            Console.WriteLine($"  0. To Exit \n  1. Add Book\n  2. Check Book Availability");
             Console.Write("\nUser input: ");
 
             Book newBook = new Book("","","", true);
@@ -94,11 +94,13 @@ class Library
             }
             else if (choice == "2")
             {
+                Console.Clear();
                 BookAvailability();
             }
             else if (choice == "0")
             {
                 Console.WriteLine("Exiting...");
+                Thread.Sleep(2000);
                 break;
             }
             else 
