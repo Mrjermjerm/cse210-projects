@@ -3,19 +3,14 @@
 class PrimiumMember : User
 {
 
-    public PrimiumMember() : base()
+    public PrimiumMember(string userID, string name, string address, string membership) : base(userID, name, address, membership)
     {
 
     }
 
-    public override void BorrowTime()
+    public virtual int DaysToBorrow()
     {
-        
-    }
-
-    public override void BorrowLimit()
-    {
-        
+        return 20;
     }
 
 

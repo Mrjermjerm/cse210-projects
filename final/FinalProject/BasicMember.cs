@@ -3,20 +3,17 @@
 class BasicMember : User
 {
 
-    public BasicMember() : base()
+    public BasicMember(string userID, string name, string address,string membership) : base(userID, name, address, membership)
     {
 
     }
 
-    public override void BorrowTime()
+    public virtual int DaysToBorrow()
     {
-        
+        return 10;
     }
 
-    public override void BorrowLimit()
-    {
-        
-    }
+    
 
 
     

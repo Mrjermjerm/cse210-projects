@@ -14,7 +14,7 @@ class BookSearch
         allBooks = library.GetBooks();
     }
 
-    public virtual void Search()
+    public void Search()
     { 
         string choice;
         
