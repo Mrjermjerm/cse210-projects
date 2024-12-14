@@ -1,6 +1,5 @@
 
 
-
 using System.IO.Pipes;
 using System.Net;
 using System.Reflection.Metadata;
@@ -11,7 +10,7 @@ class Library
 
     private List<Book> _books = new List<Book>();
 
-    // User Interface
+    // User Interface 
     public void Main()
     {
         string choice;
@@ -20,7 +19,7 @@ class Library
         {
             Console.Clear();
             Console.WriteLine("\nWelcome to Jeremy's Library Management.\n\nPlease select one of the following:");
-            Console.WriteLine("  0. To Exit \n  1. Manage Books");
+            Console.WriteLine("  0. To Exit \n  1. Manage Books \n  2. ");
             Console.Write("\nUser Input: ");
 
             choice = Console.ReadLine();
@@ -32,6 +31,7 @@ class Library
             else if (choice == "0")
             {
                 Console.WriteLine("Exiting...");
+                Thread.Sleep(2000);
                 break;
             }
             else 
@@ -41,6 +41,12 @@ class Library
         } while (choice != "0");
     }
 
+    // Method for getting list of books
+    public List<Book> GetBooks()
+    {   
+        return _books;
+    }
+
     // Check Books Available
     public void BookAvailability()
     {
@@ -48,7 +54,7 @@ class Library
         
         foreach (var book in _books)
         {
-            if ( book.GetStatus() == true)
+            if ( book.GetStatus())
             {
                 Console.WriteLine($"Title: {book.GetTitle()}");
             }
@@ -69,7 +75,6 @@ class Library
 
         Console.Write($"{book.GetTitle()} is now added to library.");
         book.SetStatus(true);
-
         _books.Add(book);
     } 
 
@@ -81,7 +86,7 @@ class Library
         do
         {
             Console.WriteLine($"\nWelcome to Book Managment:");
-            Console.WriteLine($"  0. To Exit \n  1. Add Book\n  2. Check Book Availability");
+            Console.WriteLine($"  0. To Exit \n  1. Add Book\n  2. Check Book Availability \n  3. Search Book");
             Console.Write("\nUser input: ");
 
             Book newBook = new Book("","","", true);
@@ -96,6 +101,12 @@ class Library
             {
                 Console.Clear();
                 BookAvailability();
+            }
+            else if (choice == "3")
+            {
+                Console.Clear();
+                BookSearch bookSearch = new BookSearch();
+                bookSearch.Search();
             }
             else if (choice == "0")
             {
@@ -166,5 +177,5 @@ class Library
         {
             Console.WriteLine($"An error occurred while reading the books: {ex.Message}");
         }
-    }
+    }    
 }
