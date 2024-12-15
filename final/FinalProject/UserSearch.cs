@@ -63,7 +63,7 @@ class UserSearch
 
         foreach (var user in allUsers)
         {
-            if (user.GetAddress() == userID)
+            if (user.GetUserID() == userID)
             {
                 foundUsers.Add(user);
             }
@@ -78,7 +78,7 @@ class UserSearch
 
         foreach (var user in allUsers)
         {
-            if (user.GetAddress() == name)
+            if (user.GetName() == name)
             {
                 foundUsers.Add(user);
             }
@@ -113,7 +113,7 @@ class UserSearch
             Console.WriteLine($"Books found for {searchType}:  {searchResult}");
             foreach (var user in foundUsers)
             {
-                Console.WriteLine($"- {user.GetUserID()} by {user.GetName()} (ISBN: {user.GetAddress()})");
+                Console.WriteLine($"- ID: {user.GetUserID()}; {user.GetName()}; (Adress: {user.GetAddress()})");
             }
         }
     }

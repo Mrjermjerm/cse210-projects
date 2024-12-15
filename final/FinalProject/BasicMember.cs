@@ -8,13 +8,10 @@ class BasicMember : User
 
     }
 
-    public virtual int DaysToBorrow()
+    public override int DaysToBorrow()  
     {
         return 10;
     }
-
-    
-
 
     
 }

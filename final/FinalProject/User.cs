@@ -4,68 +4,45 @@
 using System.Data;
 using System.Reflection.Metadata;
 
-class User
+abstract class User
 {
-    private string _userID; // User ID
-    private string _name; // Name
-    private string _address; // Address
-     private string _membership;
-    private DateTime dateBorrowed = DateTime.Now; // Date Borrowed
+    private string userID;
+    private string name;
+    private string address;
+    private string membership;
+
+
+    private DateTime dateBorrowed; // Date Borrowed
     private DateTime dateReturned; // Date Returned
     private DateTime dueDate; // Due Date
-    
-    
+
+
     public User(string userID, string name, string address, string membership)
     {
-        _userID = userID;
-        _name = name;
-        _address = address;
-        _membership = membership;
-    }
-
-    // Membership Type
-    public string GetMembership() 
-    { 
-        return _membership; 
-    }
-    public void SetMembership(string membership) 
-    { 
-        _membership = membership; 
+        this.userID = userID;
+        this.name = name;
+        this.address = address;
+        this.membership = membership;
     }
     
-    // User ID
-    public string GetUserID()
-    {
-        return _userID;
-    }
-    public void SetUserID(string userID)
-    {
-        _userID = userID;
-    }
 
-    // User Name
-    public string GetName()
-    {
-        return _name;
-    }
-    public void SetName(string name)
-    {
-        _name = name;
-    }
+    // Getters and Setters
+    public string GetUserID() => userID;
+    public void SetUserID(string id) => userID = id;
 
-    // User Address
-    public string GetAddress()
-    {
-        return _address;
-    }
-    public void SetAddress(string address)
-    {
-        _address = address;
-    }
+    public string GetName() => name;
+    public void SetName(string name) => this.name = name;
 
-    // Date Borrowed 
+    public string GetAddress() => address;
+    public void SetAddress(string address) => this.address = address;
+
+    public string GetMembership() => membership;
+    public void SetMembership(string membership) => this.membership = membership;
+
+    // Date Borrowed
     public void DateBorrowed()
     {
+        dateBorrowed = DateTime.Now;
         Console.WriteLine($"Date Borrowed: {dateBorrowed}");
     }
 
@@ -81,22 +58,21 @@ class User
     {
         DateTime currentDate = DateTime.Now;
 
-        dueDate = currentDate.AddDays(DaysTOBorrow());
+        dueDate = currentDate.AddDays(DaysToBorrow());
         Console.WriteLine($"Due Date: {dueDate}");
 
-        if (dueDate > currentDate)
+        if (dueDate < currentDate)
         {
             TimeSpan daysLate = dueDate - currentDate;
  
-            Console.WriteLine($"{_name} is {daysLate}");
+            Console.WriteLine($"{name} is {daysLate} day(s) late.");
+        }
+        else
+        {
+            Console.WriteLine($"{name} is within the borrowing period.");
         }
     }
 
-    public virtual int DaysTOBorrow()
-    {
-        return 0;
-    }
-
-
+    public abstract int DaysToBorrow();
     
 }
