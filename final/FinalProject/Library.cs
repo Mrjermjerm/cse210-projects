@@ -100,28 +100,8 @@ class Library
     // Add User
     public void AddUser(User user)
     {
-        Console.Write("Enter the User information.\nUser ID: ");
-        user.SetUserID(Console.ReadLine());
-
-        Console.Write("Name: ");
-        user.SetName(Console.ReadLine());
-
-        Console.Write("Address: ");
-        user.SetAddress(Console.ReadLine());
-
-        Console.Write("Membership: \n1.  Basic \n2.  Preimium ");
-        string choice = Console.ReadLine();
-         
-        if (choice == "1")
-        {
-            user.SetMembership("Basic");  // You can store the membership type as a string
-        }
-        else if (choice == "2")
-        {
-            user.SetMembership("Premium");
-        }
-
         _users.Add(user);
+        SaveUsersToFile("Users.txt");
     }
 
     public void DeleteUser(string userID)
@@ -184,9 +164,8 @@ class Library
                 {
                     newUser = new PremiumMember(userID, name, address, "Premium");
                 }
+                AddUser(newUser); // Save user to file and to list
 
-                AddUser(newUser);
-                SaveUsersToFile("Users.txt");
             }
             else if (choice == "2")
             {
