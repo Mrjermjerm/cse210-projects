@@ -308,9 +308,9 @@ class Library
             {
                 // View Borrowed Books
                 Console.WriteLine("\nBorrowed Books: ");
-                foreach (var transaction in _transactions.Where(t => t._action == "borrow"))
+                foreach (var transaction in _transactions.Where(t => t.GetAction() == "borrow"))
                 {
-                    Console.WriteLine($"User: {transaction._userID}, Book ISBN: {transaction._bookISBN}, Date: {transaction._transactionDate}");
+                    Console.WriteLine($"User: {transaction.GetUserID()}, Book ISBN: {transaction.GetISBN()}, Date: {transaction.GetMembership()}");
                 }
             }
         } while (choice != "0");

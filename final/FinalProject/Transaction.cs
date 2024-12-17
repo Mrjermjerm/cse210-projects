@@ -3,10 +3,10 @@
 class Transaction
 {
 
-    public string _userID;
-    public string _bookISBN;
-    public DateTime _transactionDate;
-    public string _action; // Borrow or Return
+    private string _userID;
+    private string _bookISBN;
+    private DateTime _transactionDate;
+    private string _action; // Borrow or Return
     
     public Transaction(string userID, string bookISBN, string action)
     {
